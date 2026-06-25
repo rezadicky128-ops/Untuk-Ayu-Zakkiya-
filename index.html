@@ -92,11 +92,12 @@ let currentIndex=null;
 
 function login(){
 if(pw.value===PASSWORD){
-login.classList.add('hidden');
+document.getElementById('login').classList.add('hidden');
 app.classList.remove('hidden');
 render();
 }else msg.innerText="kata yang kamu masukkan belum tepat.";
 }
+
 
 function data(){return JSON.parse(localStorage.getItem('ayu_letters')||'[]');}
 function save(d){localStorage.setItem('ayu_letters',JSON.stringify(d));}
