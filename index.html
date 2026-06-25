@@ -112,9 +112,8 @@ async function sha256(string) {
 }
 
 async function login(){
-  const inputHash = await sha256(pw.value.trim());
-  if(inputHash === PASSWORD_HASH){
-    document.getElementById('login').classList.add('hidden');
+  if(pw.value.trim() === "selalutentangkya"){
+    document.getElementById('login').style.display = 'none';
     document.getElementById('app').classList.remove('hidden');
     render();
   } else {
