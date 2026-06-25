@@ -107,6 +107,7 @@ let currentIndex = null;
 async function sha256(string) {
     const utf8 = new Uint8Array(Array.from(string).map(c => c.charCodeAt(0)));
     const hashBuffer = await crypto.subtle.digest('SHA-256', utf8);
+    // Tambahan paling penting yang tadinya kurang di kode asli templatmu:
     return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
