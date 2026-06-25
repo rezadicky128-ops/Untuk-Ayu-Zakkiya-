@@ -111,7 +111,6 @@ async function sha256(string) {
 }
 
 async function login(){
-  // .trim() dipasang agar kalau keyboard HP nambahin spasi, tidak bikin salah
   const inputHash = await sha256(pw.value.trim());
   if(inputHash === PASSWORD_HASH){
     document.getElementById('login').classList.add('hidden');
