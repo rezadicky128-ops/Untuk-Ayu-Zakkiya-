@@ -88,16 +88,26 @@ button{padding:10px 16px;border:none;border-radius:12px;cursor:pointer;margin:4p
 </div>
 
 <script>
-const PASSWORD="selalutentangkya";
-let currentIndex=null;
+const PASSWORD_HASH = "8677e4860b86a3cb3652db6bfdf2ba7b8a8b16bb931fae8071869e26217462fa";
+let currentIndex = null;
 
-function login(){
-if(pw.value===PASSWORD){
-document.getElementById('login').classList.add('hidden');
-app.classList.remove('hidden');
-render();
-}else msg.innerText="kata yang kamu masukkan belum tepat.";
+async function sha256(string) {
+    const utf8 = new Uint8Array(Array.from(string).map(c => c.charCodeAt(0)));
+    const hashBuffer = await crypto.subtle.digest('SHA-256', utf8);
+    return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
+
+async function login(){
+    const inputHash = await sha256(pw.value);
+    if(inputHash === PASSWORD_HASH){
+        document.getElementById('login').classList.add('hidden');
+        document.getElementById('app').classList.remove('hidden');
+        render();
+    } else {
+        msg.innerText = "kata yang kamu masukkan belum tepat.";
+    }
+}
+
 
 
 function data(){return JSON.parse(localStorage.getItem('ayu_letters')||'[]');}
