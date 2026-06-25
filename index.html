@@ -101,15 +101,7 @@ button{padding:10px 16px;border:none;border-radius:12px;cursor:pointer;margin:4p
 </div>
 
 <script>
-const PASSWORD_HASH = "b4f177fb73cd60bc72a74bd423df2f21a4fcf1d08cf702cf110a2f585cb15942";
 let currentIndex = null;
-
-async function sha256(string) {
-    const utf8 = new Uint8Array(Array.from(string).map(c => c.charCodeAt(0)));
-    const hashBuffer = await crypto.subtle.digest('SHA-256', utf8);
-    // Tambahan paling penting yang tadinya kurang di kode asli templatmu:
-    return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
-}
 
 async function login(){
   if(pw.value.trim() === "selalutentangkya"){
