@@ -60,6 +60,20 @@ button{padding:10px 16px;border:none;border-radius:12px;cursor:pointer;margin:4p
   margin-bottom: 20px;
   border: 1px solid rgba(212, 175, 55, 0.2);
 }
+  .fade-in{
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(15px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
 </style>
 </head>
 <body>
@@ -603,12 +617,22 @@ function render(){
 function openLetter(i){
   currentIndex = i;
   const d = museumData[i];
+
   document.getElementById('app').classList.add('hidden');
-  document.getElementById('reader').classList.remove('hidden');
+
+  const reader = document.getElementById('reader');
+  reader.classList.remove('hidden');
+
+  // menjalankan animasi setiap kali surat dibuka
+  reader.classList.remove('fade-in');
+  void reader.offsetWidth;
+  reader.classList.add('fade-in');
+
   document.getElementById('rImg').src = d.img;
   document.getElementById('rTitle').textContent = d.title;
   document.getElementById('rDate').textContent = "Museum Kenangan Kita";
   document.getElementById('rContent').textContent = d.content;
+
   window.scrollTo(0, 0);
 }
 
