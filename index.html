@@ -652,6 +652,7 @@ audio.onended = function() {
         urutan = 0;
     }
     audio.src = daftarLagu[urutan];
+    audio.load(); 
     audio.play();
 };
   
